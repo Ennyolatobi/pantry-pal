@@ -1,19 +1,17 @@
 <div align="center">
 
-<img src="public/logo.png" alt="PantryPal Logo" width="72" height="72" />
-
 # PantryPal
 
-**A full-featured personal recipe manager built with React 19**
+**An African-first recipe manager built with React 19**
 
-Discover, save, and organise thousands of recipes. Plan your meals for the week, generate smart shopping lists, and build beautiful custom cookbooks — all in one place.
+Discover curated Nigerian & African recipes alongside 10,000+ global dishes. Plan meals, match your pantry, cook within budget, and build beautiful cookbooks.
 
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=white&style=flat-square)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white&style=flat-square)](https://vitejs.dev)
 [![Zustand](https://img.shields.io/badge/Zustand-5.x-433e38?style=flat-square)](https://zustand-demo.pmnd.rs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-[Features](#-features) · [Tech Stack](#-tech-stack) · [Getting Started](#-getting-started) · [Project Structure](#-project-structure) · [Architecture](#-architecture) · [Roadmap](#-roadmap)
+[Features](#features) · [Architecture](#architecture) · [Getting Started](#getting-started) · [Data Schema](#data-schema) · [Roadmap](#roadmap)
 
 </div>
 
@@ -21,130 +19,94 @@ Discover, save, and organise thousands of recipes. Plan your meals for the week,
 
 ## Overview
 
-PantryPal is a single-page React application that gives home cooks a complete recipe management toolkit. It connects to the free [TheMealDB API](https://www.themealdb.com) to provide access to over 10,000 recipes, and persists all user data locally using Zustand with `localStorage`, so everything is always available — no account required.
+PantryPal is a single-page React application built around an African-first philosophy. It ships with a fully curated local database of 70+ Nigerian and African recipes — with regional context, tribal attribution, market pricing in Naira, and nutritional data — alongside the global TheMealDB catalogue.
 
-The interface is fully responsive: a fixed sidebar on desktop, and a slide-in hamburger drawer with a top app-bar on mobile and tablet.
+No backend, no paid API, no account required. Everything runs in the browser.
 
 ---
 
 ## Features
 
-### Recipe Discovery
-- Browse a curated grid of random featured recipes on the home page, refreshed on every visit
-- Full-text search across 10,000+ recipes powered by TheMealDB
-- Detailed recipe view with ingredients, step-by-step instructions, and a YouTube tutorial link where available
+### African Kitchen
+- 60 curated Nigerian recipes spanning all regions — Yoruba, Igbo, Hausa, Delta, Cross River
+- 10 additional African country recipes — Ghana, Ethiopia, Kenya, South Africa, Senegal, Morocco
+- Tribe filter (Yoruba / Igbo / Hausa), country filter, breakfast section
+- Visual tribal cuisine cards on the explore page
+- Every recipe includes description, difficulty, cook time, servings, tags, and aliases
 
-### Personal Library
-- **Favourites** — save any recipe with a single tap; persists across sessions
-- **My Recipes** — create and store custom recipes with your own name, category, cuisine, and instructions
-- **Recently Viewed** — automatically tracks the last 12 recipes you opened, shown on the home page for quick re-access
+### Intelligent Search
+- Searches across recipe name, aliases, keywords, tags, ingredients, tribe, country, and category simultaneously
+- Typo-tolerant matching via Levenshtein distance (up to 2 character errors forgiven)
+- Example: searching "moin moin", "moi moi", or "bean pudding" all find the same recipe
+
+### Budget Meal Finder
+- Enter any Naira amount and see every recipe cookable within that budget
+- Six quick-select preset budgets (₦1,500 to ₦10,000)
+- Results sorted cheapest first
+- Every local recipe displays its estimated low / average / high market cost
+
+### Pantry Matcher
+- Enter the ingredients you currently have
+- App scores every local recipe by percentage ingredient match
+- Only shows recipes where you have at least 30% of ingredients
+- Ranked by match percentage with a visual progress bar
+- Shows missing ingredient count alongside matched count
 
 ### Meal Planning
 - 7-day visual meal planner showing the current week
-- Assign breakfast, lunch, dinner, and snack slots for any day
-- Pick from your saved favourites directly inside the planner
-- Remove planned meals individually with a single click
+- Four meal slots per day: Breakfast, Lunch, Dinner, Snack
+- Pick from saved favourites directly inside the planner
 
-### Smart Shopping List
-- Add all ingredients from any recipe in one tap from the recipe detail page
-- Add items manually with the inline quick-add input — no need to be on a recipe page
-- Items are automatically categorised by type (Produce, Meat, Dairy, Pantry, Spices, Other)
-- Check off items as you shop; clear checked items in bulk
-- Print the list directly from the browser
+### Shopping List
+- Add all ingredients from any recipe in one tap
+- Add items manually with the inline quick-add input
+- Items auto-categorised (Produce, Meat, Dairy, Pantry, Spices, Other)
+- Check off items as you shop, clear checked items in bulk, print the list
 
 ### Cookbooks
-- Group your favourite recipes into named cookbook collections
-- Visual 2×2 thumbnail grid preview for each cookbook
-- Delete cookbooks at any time without affecting your underlying favourites
+- Group saved recipes into named cookbook collections
+- 2×2 photo grid preview on each cookbook card
 
-### UI & Experience
-- Light and dark mode with a single toggle, persisted across sessions
-- Responsive layout: sidebar navigation on desktop (≥769px), slide-in drawer + fixed top header on mobile/tablet (≤768px)
-- Smooth drawer animation with backdrop blur and scroll-lock while open
-- Non-blocking toast notifications for actions like saving to shopping list or copying a share link
-- Web Share API integration on supported devices; clipboard fallback on others
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | React 19 |
-| Bundler | Vite 7 |
-| State management | Zustand 5 with `persist` middleware |
-| Routing | React Router DOM 7 |
-| Icons | Lucide React |
-| Data source | TheMealDB REST API (free tier, no key required) |
-| Styling | CSS-in-JS via `<style>` tag with CSS custom properties |
-| Fonts | Sora (display) + DM Sans (body) via Google Fonts |
-| Storage | `localStorage` via Zustand persist |
+### Personal Library
+- Favourites, custom recipes, recently viewed (last 12), all persisted in localStorage
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
+- Node.js v18+ (LTS recommended)
 
-- [Node.js](https://nodejs.org) **v18 or higher** (LTS recommended)
-- npm (bundled with Node.js)
-
-Verify your installation:
+### Install and run
 
 ```bash
-node -v
-npm -v
-```
-
-### Installation
-
-**1. Clone or unzip the project**
-
-If you have the zip file:
-```bash
-unzip pantrypal-v2.zip
+# Unzip the project
+unzip pantrypal-v6.zip
 cd pantrypal-updated
-```
 
-Or clone from your repository:
-```bash
-git clone https://github.com/your-username/pantrypal.git
-cd pantrypal
-```
-
-**2. Install dependencies**
-
-```bash
+# Install dependencies
 npm install --legacy-peer-deps
-```
 
-> The `--legacy-peer-deps` flag is required because `lucide-react@0.383.0` declares peer support for React 16–18, while this project uses React 19. The library works correctly with React 19; the flag bypasses the version check.
-
-**3. Start the development server**
-
-```bash
+# Start dev server
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open [http://localhost:5173](http://localhost:5173)
 
-### Available Scripts
+### Available scripts
 
 | Command | Description |
 |---|---|
-| `npm run dev` | Start development server with HMR at `localhost:5173` |
-| `npm run build` | Build for production into the `dist/` folder |
-| `npm run preview` | Serve the production build locally for final checks |
-| `npm run lint` | Run ESLint across all source files |
+| `npm run dev` | Start dev server with HMR |
+| `npm run build` | Production build into `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint |
 
-### Production Build
+### Deploying to Vercel
 
-```bash
-npm run build
-npm run preview
-```
+The project includes `vercel.json` for client-side routing and `.npmrc` for the peer dependency flag. Push to GitHub and connect to Vercel — it will deploy without any extra configuration.
 
-The `dist/` directory contains a fully static build that can be deployed to any static host (Vercel, Netlify, GitHub Pages, etc.).
+For environment variables: none are required. TheMealDB is a free public API with no key.
 
 ---
 
@@ -152,150 +114,192 @@ The `dist/` directory contains a fully static build that can be deployed to any 
 
 ```
 pantrypal/
-├── public/
-│   ├── favicon.png
-│   └── logo.png
 ├── src/
-│   ├── App.jsx               # Main application — all components, pages, store, and styles
-│   └── main.jsx              # React root render
-├── index.html
+│   ├── App.jsx                    # All components, pages, routing, styles
+│   ├── data/
+│   │   └── recipes/
+│   │       ├── nigerianRecipes.json   # 60 Nigerian dishes
+│   │       └── africanRecipes.json    # 10 African country dishes
+│   ├── services/
+│   │   └── recipeService.js       # Data layer — search, filter, normalise, merge
+│   └── main.jsx
+├── public/
+├── .npmrc                         # legacy-peer-deps=true (for Vercel)
+├── vercel.json                    # SPA routing rewrites
 ├── package.json
-├── vite.config.js
-└── README.md
+└── vite.config.js
 ```
-
-> All application code lives in `src/App.jsx`. This is an intentional architectural decision for a project of this scope — a single-file approach eliminates module resolution overhead, keeps imports minimal, and makes the entire codebase readable in one file. See [Architecture](#-architecture) for more detail.
 
 ---
 
 ## Architecture
 
-### State Management
+### Data Layer (`recipeService.js`)
 
-PantryPal uses [Zustand](https://zustand-demo.pmnd.rs) with the `persist` middleware. All user data — favourites, custom recipes, the meal plan, the shopping list, cookbooks, recently viewed recipes, and the UI theme — is stored in a single Zustand store that automatically syncs to `localStorage`.
+All data access goes through `recipeService.js`. It exposes:
+
+| Export | Description |
+|---|---|
+| `searchAllRecipes(query, filter)` | Unified search across local + TheMealDB |
+| `getRecipeById(id)` | Looks up local first, then TheMealDB |
+| `filterByMaxBudget(nairaAmount)` | Returns local recipes under a budget, sorted cheapest first |
+| `pantryMatch(ingredientArray)` | Scores and ranks local recipes by ingredient overlap |
+| `getByTribe(tribe)` | Filter by Yoruba / Igbo / Hausa |
+| `getByCountry(country)` | Filter by country |
+| `getBreakfast()` | All breakfast-tagged recipes |
+| `getTrending()` | Recipes tagged as party food, street food, or national favourites |
+| `ALL_LOCAL_RECIPES` | All 70 normalised local recipes |
+| `NIGERIAN_RECIPES` | 60 Nigerian recipes only |
+| `AFRICAN_RECIPES` | 10 non-Nigerian African recipes |
+
+### Search Algorithm
 
 ```
-useRecipeStore (Zustand + persist → localStorage)
+recipeMatchesQuery(recipe, query)
+  → splits query into individual words
+  → for each word, checks:
+      recipe name, category, area, tribe, country, region,
+      mealType, description, aliases[], keywords[], tags[],
+      strIngredient1…strIngredient20
+  → match = exact substring OR levenshtein(field, word) ≤ 2
+  → ALL words must match (AND logic)
+```
+
+### Local Recipe Shape
+
+```json
+{
+  "id": "ng001",
+  "name": "Jollof Rice",
+  "aliases": ["Party Rice", "Nigerian Jollof"],
+  "keywords": ["rice", "smoky rice", "tomato rice", "one pot"],
+  "category": "Main Course",
+  "region": "National",
+  "tribe": "All",
+  "country": "Nigeria",
+  "budgetLevel": "medium",
+  "cookTime": "60 mins",
+  "servings": 6,
+  "difficulty": "Medium",
+  "mealType": "Lunch",
+  "image": "https://...",
+  "description": "Nigeria's most celebrated dish…",
+  "ingredients": ["3 cups long grain parboiled rice", "…"],
+  "instructions": ["Step 1…", "Step 2…"],
+  "nutrition": { "calories": 420, "protein": "8g", "carbs": "72g", "fat": "12g" },
+  "marketEstimate": { "lowBudget": 2500, "average": 4000, "high": 6000, "currency": "NGN" },
+  "tags": ["party food", "rice", "tomato", "national favourite"]
+}
+```
+
+### State Management (Zustand + persist)
+
+```
+useRecipeStore (localStorage)
 ├── favorites[]
 ├── myRecipes[]
-├── shoppingList[]
-├── mealPlan{}                 // keyed by ISO date string, then meal slot
+├── shoppingList[]          ← items auto-categorised on add
+├── mealPlan{}              ← keyed by ISO date → meal slot → recipe
 ├── cookbooks[]
-├── recentlyViewed[]           // capped at 12 entries, LIFO
+├── recentlyViewed[]        ← capped at 12, LIFO
 └── theme: 'light' | 'dark'
 ```
 
-Because all state is derived from the store, there is no prop drilling and no shared context — any component can read or write any slice directly.
-
-### Data Fetching
-
-All external data comes from the [TheMealDB free API](https://www.themealdb.com/api.php). There is no backend, no authentication, and no API key needed. The three endpoints in use are:
-
-```
-GET /api/json/v1/1/search.php?s={query}   → search by name
-GET /api/json/v1/1/lookup.php?i={id}      → fetch single recipe
-GET /api/json/v1/1/random.php             → random recipe
-```
-
-The home page fires 8 parallel random requests using `Promise.all` to populate the featured grid.
-
-### Routing
-
-Client-side routing is handled by React Router DOM 7. All routes are declared in the root `<App>` component:
+### Route Map
 
 | Route | Page |
 |---|---|
-| `/` | Home (featured recipes + recently viewed) |
-| `/search` | Recipe search |
-| `/recipe/:id` | Recipe detail |
+| `/` | Home (trending, breakfast, western featured, recently viewed) |
+| `/explore` | African Kitchen (all local recipes + tribe/country filters) |
+| `/search` | Global search (local + TheMealDB merged) |
+| `/recipe/:id` | Recipe detail (local or TheMealDB) |
 | `/favorites` | Saved favourites |
-| `/my-recipes` | Custom recipes |
-| `/meal-planner` | 7-day meal planner |
-| `/shopping-list` | Shopping list |
+| `/my-recipes` | Custom user recipes |
+| `/meal-planner` | 7-day planner |
+| `/shopping-list` | Shopping list with manual add |
 | `/cookbook` | Cookbook collections |
-
-### Responsive Layout Strategy
-
-| Viewport | Navigation |
-|---|---|
-| ≥ 769px (desktop) | Fixed 248px sidebar with full nav |
-| 769px–1024px (tablet) | Sidebar narrows to 200px |
-| ≤ 768px (mobile/tablet) | Sidebar hidden; fixed top header with hamburger; slide-in drawer |
-
-The drawer uses a CSS `transform: translateX(-100%)` → `translateX(0)` transition driven by an `open` boolean in local React state. A backdrop overlay sits behind it on `z-index: 300`; the drawer itself is on `z-index: 400`. Body scroll is locked via `document.body.style.overflow = 'hidden'` while the drawer is open, and restored on close or route change.
-
-### Shopping List Categorisation
-
-When ingredients are added to the shopping list, the `getCategoryForIngredient` utility performs a simple keyword match against a predefined map:
-
-```
-Produce   → lettuce, tomato, onion, garlic, pepper, carrot, potato, celery
-Meat      → chicken, beef, pork, lamb, turkey, bacon, sausage
-Dairy     → milk, cheese, butter, cream, yogurt, eggs
-Pantry    → flour, sugar, salt, pepper, oil, vinegar, rice, pasta
-Spices    → cumin, paprika, oregano, basil, thyme, cinnamon
-Other     → fallback for unmatched ingredients
-```
-
-Manually added items go through the same categorisation pipeline.
+| `/budget` | Budget meal finder |
+| `/pantry` | Pantry ingredient matcher |
 
 ---
 
-## Environment & Compatibility
+## Data Schema
 
-PantryPal requires no environment variables. The TheMealDB API is public and runs over HTTPS, so there is nothing to configure before running the project.
+### Adding New Recipes
 
-| Browser | Support |
-|---|---|
-| Chrome / Edge 90+ | ✅ Full |
-| Firefox 90+ | ✅ Full |
-| Safari 15+ | ✅ Full |
-| iOS Safari 15+ | ✅ Full |
-| Chrome for Android | ✅ Full |
+To add a recipe, append a new object to `src/data/recipes/nigerianRecipes.json` or `africanRecipes.json`. Follow this schema:
 
-The Web Share API (used on the recipe detail share button) is available on iOS Safari, Chrome for Android, and recent versions of Chrome/Edge on desktop. On unsupported browsers, the button falls back to copying the URL to the clipboard.
+```json
+{
+  "id": "ng061",
+  "name": "Recipe Name",
+  "aliases": ["Alternative Name 1", "Alternative Name 2"],
+  "keywords": ["searchable term", "another term"],
+  "category": "Main Course | Soup | Snack | Side Dish | Swallow | Breakfast | Drink | Grilled | Appetiser",
+  "region": "North | South East | South West | South South | National",
+  "tribe": "Hausa | Yoruba | Igbo | Ijaw | Efik | Urhobo | All",
+  "country": "Nigeria",
+  "budgetLevel": "low | medium | high",
+  "cookTime": "30 mins",
+  "servings": 4,
+  "difficulty": "Easy | Medium | Hard",
+  "mealType": "Breakfast | Lunch | Dinner | Snack",
+  "image": "https://images.unsplash.com/...",
+  "description": "One to two sentence description of the dish.",
+  "ingredients": [
+    "quantity unit ingredient name",
+    "..."
+  ],
+  "instructions": [
+    "Step 1 text.",
+    "Step 2 text."
+  ],
+  "nutrition": { "calories": 0, "protein": "0g", "carbs": "0g", "fat": "0g" },
+  "marketEstimate": { "lowBudget": 0, "average": 0, "high": 0, "currency": "NGN" },
+  "tags": ["tag1", "tag2"]
+}
+```
+
+The `normaliseLocal()` function in `recipeService.js` handles converting this to the app's internal shape automatically — no other code changes needed.
 
 ---
 
 ## Roadmap
 
-Features planned for future development:
-
-- [ ] **Nutritional information** — calorie and macro display on recipe detail, using a nutrition API
-- [ ] **Category & cuisine filters** — filter chips on the search page to narrow results by meal type or origin
-- [ ] **Serving size scaling** — scale ingredient quantities dynamically based on the servings stepper
-- [ ] **Recipe notes** — personal freetext notes attached to any saved recipe
-- [ ] **Cookbook PDF export** — generate a printable PDF from a cookbook collection
-- [ ] **Recipe ratings** — star rating system for saved recipes
-- [ ] **Cloud sync** — optional account-based sync so data follows the user across devices
+- [ ] Supabase backend migration — community recipe submissions
+- [ ] Recipe ratings and reviews
+- [ ] Cookbook PDF export
+- [ ] Serving size scaling (ingredient amounts adjust with servings stepper)
+- [ ] Nutritional totals for meal plan
+- [ ] Voice search (Web Speech API)
+- [ ] Offline support via Service Worker
+- [ ] More African countries — Cameroon, Côte d'Ivoire, Egypt, Tanzania
 
 ---
 
 ## Contributing
 
-Contributions are welcome. Please open an issue to discuss significant changes before submitting a pull request.
-
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes: `git commit -m 'feat: add your feature'`
-4. Push to the branch: `git push origin feature/your-feature-name`
-5. Open a pull request against `main`
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m 'feat: description'`
+4. Push and open a pull request against `main`
 
-Please follow the existing code style. Run `npm run lint` before submitting.
+To add recipes only, edit the JSON files directly — no code knowledge required.
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT — see [LICENSE](LICENSE)
 
 ---
 
 ## Acknowledgements
 
-- Recipe data provided by [TheMealDB](https://www.themealdb.com) — a free, open, crowd-sourced database of recipes
-- Icons by [Lucide](https://lucide.dev)
-- Typography: [Sora](https://fonts.google.com/specimen/Sora) and [DM Sans](https://fonts.google.com/specimen/DM+Sans) via Google Fonts
+- Global recipe data: [TheMealDB](https://www.themealdb.com) (free, public API)
+- Icons: [Lucide React](https://lucide.dev)
+- Typography: [Sora](https://fonts.google.com/specimen/Sora) + [DM Sans](https://fonts.google.com/specimen/DM+Sans) via Google Fonts
+- Recipe images: [Unsplash](https://unsplash.com)
 
 ---
 
