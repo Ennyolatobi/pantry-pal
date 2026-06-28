@@ -19,7 +19,7 @@ Discover curated Nigerian & African recipes alongside 10,000+ global dishes. Pla
 
 ## Overview
 
-PantryPal is a single-page React application built around an African-first philosophy. It ships with a fully curated local database of 70+ Nigerian and African recipes — with regional context, tribal attribution, market pricing in Naira, and nutritional data — alongside the global TheMealDB catalogue.
+PantryPal is a single-page React application built around an African-first philosophy. It ships with a fully curated local database of 70+ Nigerian and African recipes with regional context, tribal attribution, market pricing in Naira, and nutritional data alongside the global TheMealDB catalogue.
 
 No backend, no paid API, no account required. Everything runs in the browser.
 
@@ -28,8 +28,8 @@ No backend, no paid API, no account required. Everything runs in the browser.
 ## Features
 
 ### African Kitchen
-- 60 curated Nigerian recipes spanning all regions — Yoruba, Igbo, Hausa, Delta, Cross River
-- 10 additional African country recipes — Ghana, Ethiopia, Kenya, South Africa, Senegal, Morocco
+- 60 curated Nigerian recipes spanning all regions, Yoruba, Igbo, Hausa, Delta, Cross River
+- 10 additional African country recipes, Ghana, Ethiopia, Kenya, South Africa, Senegal, Morocco
 - Tribe filter (Yoruba / Igbo / Hausa), country filter, breakfast section
 - Visual tribal cuisine cards on the explore page
 - Every recipe includes description, difficulty, cook time, servings, tags, and aliases
@@ -104,7 +104,7 @@ Open [http://localhost:5173](http://localhost:5173)
 
 ### Deploying to Vercel
 
-The project includes `vercel.json` for client-side routing and `.npmrc` for the peer dependency flag. Push to GitHub and connect to Vercel — it will deploy without any extra configuration.
+The project includes `vercel.json` for client-side routing and `.npmrc` for the peer dependency flag. Push to GitHub and connect to Vercel, it will deploy without any extra configuration.
 
 For environment variables: none are required. TheMealDB is a free public API with no key.
 
@@ -266,14 +266,14 @@ The `normaliseLocal()` function in `recipeService.js` handles converting this to
 
 ## Roadmap
 
-- [ ] Supabase backend migration — community recipe submissions
+- [ ] Supabase backend migration, community recipe submissions
 - [ ] Recipe ratings and reviews
 - [ ] Cookbook PDF export
 - [ ] Serving size scaling (ingredient amounts adjust with servings stepper)
 - [ ] Nutritional totals for meal plan
 - [ ] Voice search (Web Speech API)
 - [ ] Offline support via Service Worker
-- [ ] More African countries — Cameroon, Côte d'Ivoire, Egypt, Tanzania
+- [ ] More African countries, Cameroon, Côte d'Ivoire, Egypt, Tanzania
 
 ---
 
@@ -284,13 +284,13 @@ The `normaliseLocal()` function in `recipeService.js` handles converting this to
 3. Commit: `git commit -m 'feat: description'`
 4. Push and open a pull request against `main`
 
-To add recipes only, edit the JSON files directly — no code knowledge required.
+To add recipes only, edit the JSON files directly, no code knowledge required.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT | see [LICENSE](LICENSE)
 
 ---
 
